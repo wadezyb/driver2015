@@ -118,7 +118,7 @@ void Encoder_Configuration(void)
 	TIM_Cmd(TIM3,ENABLE);
 	
 	//
-	TIM3->CNT = (getEncoderValue()+2116+1000)/4*2000/4096%2000;//2116//1725
+	TIM3->CNT = (getEncoderValue()+1725+1000)/4*2000/4096%2000;//2116//1725
 	
 	EncoderObjInit();
 	TIM6_Configuration();

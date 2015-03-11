@@ -113,15 +113,9 @@ void startTask ( void *pvParameters )
 	
 	xTaskCreate( calibrationTask, "Calibration", configMINIMAL_STACK_SIZE, NULL, 7, NULL );	
 
-	
-//	xTaskCreate( sendPositionTask, "sendPosition", configMINIMAL_STACK_SIZE*2, NULL, 2, NULL );
-//	
-	//xTaskCreate( canopenDataSyncTask, "dataSync", configMINIMAL_STACK_SIZE*4, NULL, 8, NULL );
-	#if( CAN_NODE == CAN_NODE_MASTER )
-	//xTaskCreate( MotionPlanningTask, "MotionPlanning", configMINIMAL_STACK_SIZE*4, NULL, 10, NULL );
-	#endif
-	
-	//xTaskCreate( test_cloopTask, "test_cloop", configMINIMAL_STACK_SIZE*3, NULL, 8, NULL );
+	xTaskCreate( driveStateManageTask, "driveStateManageTask", configMINIMAL_STACK_SIZE*2, NULL, 2, NULL );
+
+	xTaskCreate( MotionPlanningTask, "MotionPlanningTask", configMINIMAL_STACK_SIZE*3, NULL, 8, NULL );
 	
 	for( ;; )
 	{							
