@@ -82,7 +82,7 @@ void EncCalibrate( void )
   */
 void calibrationTask( void *pvParameters )
 {
-	vTaskDelay(2000);
+	vTaskDelay(100);
 	//EncCalibrate();
 	CurrentOffsetCalibration();
 	//calibrateRotorZeroPos();

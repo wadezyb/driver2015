@@ -27,7 +27,7 @@ void vPI_Init( void )
 	Velocity.vPI.kp = 12000;//
 	Velocity.vPI.ki = 300;//
 	Velocity.vPI.scale = 100;
-	Velocity.vPI.output_max = 1500*CURRENT_K;
+	Velocity.vPI.output_max = 2000;
 	Velocity.vPI.sum_error_max = Velocity.vPI.output_max*Velocity.vPI.scale;
 }
 
@@ -71,7 +71,7 @@ void vloopControl( void )
 	else if( Velocity.vPI.output < -Velocity.vPI.output_max )
 		Velocity.vPI.output = -Velocity.vPI.output_max;
 	// Send Current Command
-	Current.targetCurrent = Velocity.vPI.output;
+	Current.targetCurrent = -Velocity.vPI.output;
 	if( vloopTuningStartFlag == 1 )
 		vloopTuning();
 }

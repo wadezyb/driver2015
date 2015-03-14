@@ -24,7 +24,7 @@
 #define L2 (125.0)
 #define h   (15.0/2/Pi)// mm/rad
 #define h3 (4096*0.0032552/2.0/Pi)// mm/rad
-#define MaxV (50.0)  // pulse/ms
+#define MaxV (30.0)  // pulse/ms
 
 pLoopObj Position;
 int sendFlag = 1;
@@ -56,11 +56,11 @@ void ploopTuning( void )
 
 void ploopInit( void )
 {
-	Position.pPD.kp = 5;
+	Position.pPD.kp = 15;
 	Position.pPD.ki = 0;
-	Position.pPD.kd = 0;
+	Position.pPD.kd = 5;
 	Position.pPD.scale = 100;
-	Position.pPD.output_max = 50;
+	Position.pPD.output_max = 30;
 	Position.pPD.error_sum_max = Position.pPD.output_max*Position.pPD.scale;
 }
 

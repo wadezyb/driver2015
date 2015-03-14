@@ -364,7 +364,6 @@ void currentLoop( void )
 		cloopTuning();
 }
 
-
 void testSVPWMTask( void *pvParameters )
 {
     int angle= 0;

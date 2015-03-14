@@ -107,7 +107,7 @@ void startTask ( void *pvParameters )
 	
 	xTaskCreate( CLITask, "CLI", configMINIMAL_STACK_SIZE*5, NULL, CLITask_PRIORITY, &CLITaskHandle );
 	
-  xTaskCreate( temptureTestTask, "temptureTestTask", configMINIMAL_STACK_SIZE*2, NULL, 2, NULL );
+  //xTaskCreate( temptureTestTask, "temptureTestTask", configMINIMAL_STACK_SIZE*2, NULL, 2, NULL );
 	
 	//xTaskCreate( as5047dTask, "testSVPWMTask", configMINIMAL_STACK_SIZE*2, NULL, 3, NULL );
 	
@@ -115,7 +115,7 @@ void startTask ( void *pvParameters )
 
 	xTaskCreate( driveStateManageTask, "driveStateManageTask", configMINIMAL_STACK_SIZE*2, NULL, 2, NULL );
 
-	xTaskCreate( MotionPlanningTask, "MotionPlanningTask", configMINIMAL_STACK_SIZE*3, NULL, 8, NULL );
+	//xTaskCreate( MotionPlanningTask, "MotionPlanningTask", configMINIMAL_STACK_SIZE*3, NULL, 8, NULL );
 	
 	for( ;; )
 	{							
