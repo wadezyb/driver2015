@@ -398,7 +398,7 @@ void sciSendTask ( void *pvParameters )
 void CLITask ( void *pvParameters )
 {
 	vTaskDelay(500);
-	sciSendString("\r\nWelcom to Robot Learning System!",bMessage);
+	//sciSendString("\r\nWelcom to Robot Learning System!",bMessage);
 	for(;;)
 	{
 		vTaskDelay(20);

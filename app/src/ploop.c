@@ -15,6 +15,7 @@
 #include "canopen.h"
 #include "can.h"
 #include "sci.h"
+#include "cli.h"
 #include "interpolation.h"
 #include "pwm.h"
 
@@ -172,11 +173,14 @@ void MotionPlanningTask( void *pvParameters )
 	TickType_t xLastWakeTime;
 	float T = 2000;
 	float w = 2*Pi/T;
-	float K = 60.0;
+	float K = 52.0;
 	float resolution = 2*Pi/2000/K; // rad per count
 	float A = Pi/resolution;
 	int offset;
 	int t = 0;
+	int counter = 0;
+	char stringBuf[20];
+	int angle = 0;
 	ModesofOperation.Param = PROFILE_POSITION_MODE;
 	vTaskDelay(500);
 	ControlWord.Param|=CONTROLWORD_SWITCH_ON;
@@ -187,12 +191,23 @@ void MotionPlanningTask( void *pvParameters )
 	for(;;)
 	{
 		vTaskDelayUntil( &xLastWakeTime, 1 );
-		Position.targetPosition = A*sin(w*t)+offset;
+		Position.targetPosition = A*cos(w*t)-A+offset;
 		//temp = A*sin(w*t)+offset;
 		if(t < T)
 			t++;
 		else
 			t = 0;
+		if(counter<20)
+		{
+			counter ++;
+		}
+		else
+		{
+			counter = 0;
+			angle = (Encoder.Value - offset)*3600/K/2000+1800;
+			sciSendString(int2String(angle,stringBuf),bMessage);
+			sciSendString("\r\n",bMessage);
+		}
 	}		
 }
 /*========================== END OF FILE =======================================*/
