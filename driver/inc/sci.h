@@ -29,6 +29,7 @@ void sciSendString( char * addr, xQueueHandle messageQueue );
 void CLITask ( void *pvParameters );
 char* float2String( float number, unsigned char resolution, char* stringBuf );
 char* int2String( int number, char* stringBuf );
+void sendSerialMessage( int data );
 #endif
 
 

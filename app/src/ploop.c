@@ -205,8 +205,9 @@ void MotionPlanningTask( void *pvParameters )
 		{
 			counter = 0;
 			angle = (Encoder.Value - offset)*3600/K/2000+1800;
-			sciSendString(int2String(angle,stringBuf),bMessage);
-			sciSendString("\r\n",bMessage);
+			//sciSendString(int2String(angle,stringBuf),bMessage);
+			//sciSendString("\r\n",bMessage);
+			sendSerialMessage(angle);
 		}
 	}		
 }

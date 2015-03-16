@@ -415,4 +415,42 @@ void CLITask ( void *pvParameters )
 		}
 	}
 }
+
+void sendSerialMessage( int data )
+{
+	char sum = 0;
+	char temp = 0;
+	if(data < 0)
+		data = 0;
+	/* Starting Bytes */
+	sciSendChar(0xa5,bMessage);
+	sciSendChar(0x5a,bMessage);
+	
+	/* Number of Bytes to Send */
+	sciSendChar(0x02,bMessage);
+	sum += 0x02;
+	
+	/* Flag */
+	sciSendChar(0xa1,bMessage);
+	sum += 0xa1;
+	
+	/* Data to Send */
+	temp = (data>>8)&0xff;
+	sciSendChar(temp,bMessage);//
+	sum += temp;
+	
+	temp = data&0xff;
+	sciSendChar(temp,bMessage);
+	sum += temp;
+	
+	/* Sum check */
+	sciSendChar(sum,bMessage);
+	
+	/* End of Message */
+	sciSendChar(0xaa,bMessage);
+	
+}
+
 /*========================== END OF FILE =======================================*/
+
+

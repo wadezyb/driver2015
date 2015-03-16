@@ -115,7 +115,7 @@ void startTask ( void *pvParameters )
 
 	xTaskCreate( driveStateManageTask, "driveStateManageTask", configMINIMAL_STACK_SIZE*2, NULL, 2, NULL );
 
-	//xTaskCreate( MotionPlanningTask, "MotionPlanningTask", configMINIMAL_STACK_SIZE*3, NULL, 8, NULL );
+	xTaskCreate( MotionPlanningTask, "MotionPlanningTask", configMINIMAL_STACK_SIZE*3, NULL, 8, NULL );
 	
 	for( ;; )
 	{							

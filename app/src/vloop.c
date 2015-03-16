@@ -71,7 +71,7 @@ void vloopControl( void )
 	else if( Velocity.vPI.output < -Velocity.vPI.output_max )
 		Velocity.vPI.output = -Velocity.vPI.output_max;
 	// Send Current Command
-	Current.targetCurrent = -Velocity.vPI.output;
+	Current.targetCurrent = Velocity.vPI.output;
 	if( vloopTuningStartFlag == 1 )
 		vloopTuning();
 }
